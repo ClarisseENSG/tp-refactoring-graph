@@ -41,7 +41,11 @@ public class Edge {
 		this.target = target;
 		this.target.addInEdge(this);
 		
-		this.geometry = this.getGeometry();
+		GeometryFactory geometryFactory = new GeometryFactory();
+		this.geometry = geometryFactory.createLineString(new Coordinate[] {
+	            getSource().getCoordinate(),
+	            getTarget().getCoordinate()
+	        });
 	}
 
 	public String getId() {
@@ -86,11 +90,7 @@ public class Edge {
 	
 	@JsonSerialize(using = GeometrySerializer.class)
 	public LineString getGeometry() {
-		GeometryFactory geometryFactory = new GeometryFactory();
-		return geometryFactory.createLineString(new Coordinate[] {
-	            getSource().getCoordinate(),
-	            getTarget().getCoordinate()
-	        });
+		return this.geometry;
 	}
 	
 	public void setGeometry(LineString geometry) {
