@@ -25,10 +25,10 @@ public class Edge {
 
 	public Edge(Vertex source, Vertex target) {
 		this.source = source;
-		this.source.getOutEdges().add(this);
+		this.source.addOutEdge(this);;
 		
 		this.target = target;
-		this.target.getInEdges().add(this);
+		this.target.addInEdge(this);;
 	}
 
 	public String getId() {

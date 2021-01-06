@@ -96,12 +96,22 @@ public class Vertex {
 		return id;
 	}
 
+	@JsonIgnore
 	public Collection<Edge> getInEdges() {
 		return this.inEdges;
 	}
-
+	
+	void addInEdge(Edge inEdge) {
+		this.inEdges.add(inEdge);
+	}
+	
+	@JsonIgnore
 	public Collection<Edge> getOutEdges() {
 		return this.outEdges;
+	}
+	
+	void addOutEdge(Edge outEdge) {
+		this.outEdges.add(outEdge);
 	}
 
 }
