@@ -31,13 +31,17 @@ public class Edge {
 	 * Sommet final
 	 */
 	private Vertex target;
+	
+	private LineString geometry;
 
 	public Edge(Vertex source, Vertex target) {
 		this.source = source;
-		this.source.addOutEdge(this);;
+		this.source.addOutEdge(this);
 		
 		this.target = target;
-		this.target.addInEdge(this);;
+		this.target.addInEdge(this);
+		
+		this.geometry = this.getGeometry();
 	}
 
 	public String getId() {
@@ -72,7 +76,7 @@ public class Edge {
 	 * @return
 	 */
 	public double getCost() {
-		return source.getCoordinate().distance(target.getCoordinate());
+		return this.geometry.getLength();
 	}
 
 	@Override
@@ -87,6 +91,10 @@ public class Edge {
 	            getSource().getCoordinate(),
 	            getTarget().getCoordinate()
 	        });
+	}
+	
+	public void setGeometry(LineString geometry) {
+		this.geometry = geometry;
 	}
 
 }
